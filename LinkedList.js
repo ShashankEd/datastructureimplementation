@@ -12,11 +12,11 @@ class LinkedList {
         this.size = 0; //number of nodes
     }
 
-    add(element) {
+    addNode(element) {
         //create a node
         var node = new Node(element);
         var current;
-        //if node is null, add it
+        //if null list add it
         if(!this.head) {
             this.head = node;
         }
@@ -28,12 +28,39 @@ class LinkedList {
             }
             current.next = node;
         }
-        this.size++; //increment the siz of the nodes 
+        this.size++; //increment the size of the nodes 
+    }
+    
+    deleteNode(element) {
+        if(!this.head) {
+            return -1;
+        } else {
+            //find the node containing the element, and remove it, and 
+            var current, prev=null;
+            current = this.head;
+            while(current != null) {
+                if(current.element === element) {
+                    if(prev === null) {
+                        this.head = current.next;
+                    } else {
+                        prev.next = current.next;
+                    }
+                    this.size--;
+                    return current.element;
+                }
+                prev = current;
+                current = current.next;
+            }
+            return -1;
+        }
     }
 }
 
 var link = new LinkedList();
-link.add(12);
-link.add(13);
-link.add(14);
-console.log("linked list ", link.head, link.size, typeof(link));
+const values = [12,13,14,15,16,17];
+const deleteElement = 15;
+values.map(value => link.addNode(value));
+console.log("linked list : Nodes added", JSON.stringify(link.head));
+console.log(`Deleting node ${deleteElement}`);
+link.deleteNode(deleteElement)
+console.log(`linked list after dleting ${deleteElement}`, JSON.stringify(link.head));
