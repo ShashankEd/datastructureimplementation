@@ -1,11 +1,8 @@
 /**
- * 
+ * Partition algorithm
  * @param {*} data 
  * @param {*} low 
  * @param {*} high 
- * @returns the updated array with sorted elements
- * @timecomplexity O(nlog n)
- * @spacecomplexity n+n for recursive function call in stack and the array of n 
  */
  const getPartitionIndex = (data,low,high) => {
     let pivotEle = data[low];
@@ -33,6 +30,15 @@
     return j;
 }
 
+/**
+ * 
+ * @param {*} data 
+ * @param {*} low 
+ * @param {*} high 
+ * @returns the updated array with sorted elements
+ * @timecomplexity O(nlog n)
+ * @spacecomplexity n+n for recursive function call in stack and the array of n 
+ */
 const quickSort = (data,low,high) => {
     if(low < high) {
          const partitionIndex = getPartitionIndex(data,low,high);
